@@ -1,5 +1,25 @@
 # Rails 5 Skeleton
 
+#### Easily forgettable git commands when using Rails:
+* `rake -T`/`rails -T`: A useful command list
+  - Some more commonly used commands:
+  - `rails db:create`
+  - `rails db:migrate`
+  - `rails db:seed`
+  - `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+* `Blank`: Filler
+
 #### Creation Steps & Tutorial Links:
 * [Tutorial: 3.1 "Sample App Setup"](https://www.railstutorial.org/book/static_pages#sec-sample_app_setup)
-* ``
+* `git remote add origin [LINK TO NEW GITHUB REPO]`: Connect a remote repo to your local repo.
