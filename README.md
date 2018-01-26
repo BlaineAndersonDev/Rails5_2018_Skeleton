@@ -28,6 +28,7 @@
 ###### Rspec Installation & Commands:
   * Use `gem install rspec-rails` in the CLI or place `gem 'rspec-rails'` into the gemfile manually. The use `bundle install.`.
   * `rails g rspec:install`: Install RSpec via the Command Line AFTER implementing the gem using `bundle install`.
+  * `be rspec`: Runs the RSpec tests. `rspec` will also work but may prompt an error.
 
 ###### ------------------------------------------------------------------
 #### Rails Generate Commands:
