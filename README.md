@@ -24,26 +24,28 @@
 
 ###### ------------------------------------------------------------------
 #### Rails Generate Commands:
+  * [RoR Generation Guide.](http://guides.rubyonrails.org/command_line.html#rails-generate)
   * `rails g` can be used as a shortcut command.
-  * `http://guides.rubyonrails.org/command_line.html#rails-generate`: RoR Generation Guide.
 
 ###### Controller Generation:
+  * [Personal Preference Controller Generation Guide](https://www.sitepoint.com/building-your-first-rails-application-views-and-controllers/)
   * `rails g controller [Name of object in CamelCase] [Routes to include with options]`
   * `rails g controller StaticPages home help`
   *
 
 ###### Model Generation:
-  * Model Generation Commands (* examples):
-    * `rails g model [model name] [field:fieldtype]`
-    * `rails g controller user username email:string age:integer`
-    * Each `field` may be assigned a field type. This defaults to `(field):string`.
-    * Available field types are: `integer` `primary_key` `decimal` `float` `boolean` `binary` `string` `text` `date` `time` `datetime` `timestamp`.
+  * [Personal Preference Model Generation Guide 1](https://railsguides.net/advanced-rails-model-generators/)
+  * [Personal Preference Model Generation Guide 2](https://richonrails.com/articles/rails-model-generator-shortcuts)
+  * `rails g model [model name] [field:fieldtype]`
+  * `rails g controller user username email:string age:integer`
+  * Each `field` may be assigned a field type. This defaults to `(field):string`.
+  * Available field types are: `integer` `primary_key` `decimal` `float` `boolean` `binary` `string` `text` `date` `time` `datetime` `timestamp`.
 
 ###### View Generation:
-  * View Generation Commands (* examples):
-    * `rails g controller [Name of object in CamelCase] [Routes to include with options]`
-    * `rails g controller StaticPages home help`
-    *
+  * `filler`: Personal Preference **View** Generation Guide.
+  * `rails g controller [Name of object in CamelCase] [Routes to include with options]`
+  * `rails g controller StaticPages home help`
+  *
 
 * `Blank`: Filler
 
