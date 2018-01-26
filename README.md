@@ -90,13 +90,85 @@
   * [**Complete**]: The test should now be passing and you have a new route in your controller!
 
 
+###### ------------------------------------------------------------------
+#### Rails Helpers & Routing:
+###### **Named** Route Examples:
+~~~~
+  Page	     URL	     Named route
+  Home	     /	         root_path
+  About	     /about	     about_path
+  Help	     /help	     help_path
+  Contact	 /contact	 contact_path
+  Sign up	 /signup	 signup_path
+  Log in	 /login	     login_path
+~~~~
+
+##### Routing:
+* All routes are defined in `config/routes.rb`.
+* `_path` is the normal route to use when using Rails Helpers.
+* `_url` is generally only used for redirects with no exchange of information.
+* The difference between `_path` & `_url` is the url version includes the entire url instead of a relative route.
+
+  * **Root Route**
+    * The root is a special route and therefore is slightly different than regular routes using "root" instead of "get" etc.
+    * [**Normal Route**]: `get 'root 'static_pages#home'`.
+    * [**Ex**]: `root_path -> '/'` - `root_url  -> 'http://www.example.com/'`
+    * [**Rails Helper**] The root can be accessed as the route `root_path`. Ex: `<%= link_to "Home", root_path %>`
+    * [**Rails Helper**] It can also be accessed as a route with `root_url`. Ex: `<%= link_to "Home", root_url %>`
+    * [**HTML**] It can also be accessed as an HTML route `'/'`. Ex: `<a href="/">Home</a>`
+
+  * **Normal Routes**
+    * [**Normal Route**]: `get 'static_pages/help'`.
+    * [**Ex**]: `help_path -> '/help'` - `help_url  -> 'http://www.example.com/static_pages/help'`
+    * [**Rails Helper**] This route can be accessed with `help_path`. Ex: `<%= link_to "Help", help_path %>`
+    * [**Rails Helper**] It can also be accessed with `help_url`. Ex: `<%= link_to "Help", help_url %>`
+    * [**HTML**] It can also be accessed using HTML `'/static_pages/help'`. Ex: `<a href="/static_pages/help">Help</a>`
+
+  * **Custom Routes**
+    * Sometimes we want a page to be accessed via a different route than RESTful. You would then need a custom route.
+    * Let's change our "Normal" route to a "Custom" route. This will change the `_path` & `_url`.
+    * [**Normal Route**]: `get 'static_pages/help'` is originally access using:
+      * `<%= link_to "Help", help_path %>`
+      * `<a href="/static_pages/help">Help</a>`
+    * [**Custom Route**]: `get  '/help', to: 'static_pages#help'` is now accessed using:
+      * `<%= link_to "Help", help_path %>`
+      * `<a href="/help">Help</a>`
+      * [**Ex**]: `help_path -> '/help'` - `help_url  -> 'http://www.example.com/help'`
+
+
+##### Rails Helpers:
+  * **Link_To**:
+    * Creating a Link:
+      * [**Rails Example**]: `<%= link_to "About", about_path %>`
+      * [**HTML Example**]: `<a href="/static_pages/about">About</a>`
+      * [**Rails Helper**]: `<%= link_to 'LinkName', http://LinkToPlace.org %>`
+      * [**Rails Helper**]: `<%= link_to 'LinkName', any_routes_path %>`
+      * [**Raw HTML**]: `<a href="http://LinkToPlace.org">LinkName</a>`
+      * [**Raw HTML**]: `<a href="/ViewFolder/View">LinkName</a>`
+
+    * Creating an Image as a Link:
+      * [**Example**]: `<%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/' %>`
+      * [**Rails Helper**]: `<%= link_to image_tag("ImageName.Extension", alt: "AlternateName"), 'http://LinkToPlace.org' %>`
+      * [**Raw HTML**]: `<a href="http://LinkToPlace.org"><img alt="AlternateName" src="/ViewFolder/ImageName.Extension" /></a>`
+      *
 
 
 
 ###### ------------------------------------------------------------------
 #### Additional Resources:
+###### Markdown:
   * [Markdown CheatSheet](https://en.support.wordpress.com/markdown-quick-reference/)
   * [Markdown Previewer](https://jbt.github.io/markdown-editor/)
+
+###### CSS:
+  * [Flexbox)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+  * [Coolors.co](https://coolors.co/)
+  * [Keep Footers Down](http://matthewjamestaylor.com/blog/keeping-footers-at-the-bottom-of-the-page)
+  * []()
+
+###### SASS:
+  * [SASS Docs)](http://sass-lang.com/)
+  * []()
 
 ###### ------------------------------------------------------------------
 #### Creation Steps, Notes & Tutorial Links:
@@ -161,5 +233,12 @@
       end
     end
   ~~~~
+  * Thats all I changed for this chapter. **Be aware that chapter 4 is review of basic Rails concepts to DBC Graduates**. If your one I recommend skipping it.
 
-###### [Tutorial: 4.2.1 "Comments"](https://www.railstutorial.org/book/rails_flavored_ruby#sec-comments)
+###### [Tutorial: 5.3.2 "Rails Routes"](https://www.railstutorial.org/book/filling_in_the_layout#sec-rails_routes)
+  * Tests work a bit differently here. Due to RSpec we dont need to change anything in the static_pages_controller_spec tests.
+  * We do, however, need to alter the static_pages_routing_spec. We need to remove the `/static_pages` from each `expect` line.
+
+###### [Tutorial: 5.3.4 "Layout link tests"](https://www.railstutorial.org/book/filling_in_the_layout#sec-layout_link_tests)
+  * This is testing our routes, which we have already updated. Move on to the next section.
+  
