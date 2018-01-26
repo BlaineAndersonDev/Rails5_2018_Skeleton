@@ -1,4 +1,5 @@
 # Rails 5 Skeleton
+#### Built using "[Railstutorial.org](https://www.railstutorial.org/book/static_pages)" as a reference base.
 
 ###### ------------------------------------------------------------------
 #### Easily forgettable git commands when using Rails:
@@ -27,6 +28,7 @@
 #### Rails Generate Commands:
   * [RoR Generation Guide.](http://guides.rubyonrails.org/command_line.html#rails-generate)
   * `rails g` can be used as a shortcut command.
+  * `rails d` can be used to destroy the generation if you need to redo it.
 
 ###### Controller Generation:
   * [Personal Preference Controller Generation Guide](https://www.sitepoint.com/building-your-first-rails-application-views-and-controllers/)
@@ -42,16 +44,8 @@
   * Each `field` may be assigned a field type. This defaults to `(field):string`.
   * Available field types are: `integer` `primary_key` `decimal` `float` `boolean` `binary` `string` `text` `date` `time` `datetime` `timestamp`.
 
-###### View Generation:
-  * `filler`: Personal Preference **View** Generation Guide.
-  * `rails g controller [Name of object in CamelCase] [Routes to include with options]`
-  * `rails g controller StaticPages home help`
-  *
-
-* `Blank`: Filler
-
 ###### ------------------------------------------------------------------
-#### Creation Steps & Tutorial Links:
+#### Creation Steps, Notes & Tutorial Links:
 * [Tutorial: 3.1 "Sample App Setup"](https://www.railstutorial.org/book/static_pages#sec-sample_app_setup)
 * "Github" may be used in place of "Bitbucket".
 * "Postgresql" may be used instead of "SQLite3" for test databases.
