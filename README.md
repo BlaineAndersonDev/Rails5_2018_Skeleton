@@ -94,13 +94,13 @@
 #### Rails Helpers & Routing:
 ###### **Named** Route Examples:
 ~~~~
-  Page	      URL	      Named route
-  Home	      /	        root_path
-  About	     /about	   about_path
-  Help	      /help	    help_path
-  Contact	   /contact	 contact_path
-  Sign up	   /signup	  signup_path
-  Log in	    /login	   login_path
+  Page	     URL	     Named route
+  Home	     /	         root_path
+  About	     /about	     about_path
+  Help	     /help	     help_path
+  Contact	 /contact	 contact_path
+  Sign up	 /signup	 signup_path
+  Log in	 /login	     login_path
 ~~~~
 
 ##### Routing:
