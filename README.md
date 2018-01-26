@@ -161,3 +161,5 @@
       end
     end
   ~~~~
+
+###### [Tutorial: 4.2.1 "Comments"](https://www.railstutorial.org/book/rails_flavored_ruby#sec-comments)
