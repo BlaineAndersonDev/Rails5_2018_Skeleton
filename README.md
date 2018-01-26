@@ -92,9 +92,20 @@
 
 ###### ------------------------------------------------------------------
 #### Rails Helpers:
+###### Named Route Examples:
+~~~~
+  Page	     URL	     Named route
+  Home	     /	         root_path
+  About	     /about	     about_path
+  Help	     /help	     help_path
+  Contact	 /contact	 contact_path
+  Sign up	 /signup	 signup_path
+  Log in	 /login	     login_path
+~~~~
 ###### link_to:
   * Creating a Link:
-    * [**Example**]: `<%= link_to 'New Post', new_post_path %>`
+    * [**Rails Example**]: `<%= link_to "About", about_path %>`
+    * [**HTML Example**]: `<a href="/static_pages/about">About</a>`
     * [**Rails Helper**]: `<%= link_to 'LinkName', http://LinkToPlace.org %>`
     * [**Rails Helper**]: `<%= link_to 'LinkName', any_routes_path %>`
     * [**Raw HTML**]: `<a href="http://LinkToPlace.org">LinkName</a>`
@@ -118,6 +129,10 @@
   * [Flexbox)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
   * [Coolors.co](https://coolors.co/)
   * [Keep Footers Down](http://matthewjamestaylor.com/blog/keeping-footers-at-the-bottom-of-the-page)
+  * []()
+
+###### SASS:
+  * [SASS Docs)](http://sass-lang.com/)
   * []()
 
 ###### ------------------------------------------------------------------
