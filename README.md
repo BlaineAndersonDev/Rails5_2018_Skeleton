@@ -91,8 +91,8 @@
 
 
 ###### ------------------------------------------------------------------
-#### Rails Helpers:
-###### Named Route Examples:
+#### Rails Helpers & Routing:
+###### **Named** Route Examples:
 ~~~~
   Page	     URL	     Named route
   Home	     /	         root_path
@@ -102,20 +102,55 @@
   Sign up	 /signup	 signup_path
   Log in	 /login	     login_path
 ~~~~
-###### link_to:
-  * Creating a Link:
-    * [**Rails Example**]: `<%= link_to "About", about_path %>`
-    * [**HTML Example**]: `<a href="/static_pages/about">About</a>`
-    * [**Rails Helper**]: `<%= link_to 'LinkName', http://LinkToPlace.org %>`
-    * [**Rails Helper**]: `<%= link_to 'LinkName', any_routes_path %>`
-    * [**Raw HTML**]: `<a href="http://LinkToPlace.org">LinkName</a>`
-    * [**Raw HTML**]: `<a href="/ViewFolder/View">LinkName</a>`
 
-  * Creating an Image as a Link:
-    * [**Example**]: `<%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/' %>`
-    * [**Rails Helper**]: `<%= link_to image_tag("ImageName.Extension", alt: "AlternateName"), 'http://LinkToPlace.org' %>`
-    * [**Raw HTML**]: `<a href="http://LinkToPlace.org"><img alt="AlternateName" src="/ViewFolder/ImageName.Extension" /></a>`
-    *
+##### Routing:
+* All routes are defined in `config/routes.rb`.
+* `_path` is the normal route to use when using Rails Helpers.
+* `_url` is generally only used for redirects with no exchange of information.
+* The difference between `_path` & `_url` is the url version includes the entire url instead of a relative route.
+
+  * **Root Route**
+    * The root is a special route and therefore is slightly different than regular routes using "root" instead of "get" etc.
+    * [**Normal Route**]: `get 'root 'static_pages#home'`.
+    * [**Ex**]: `root_path -> '/'` - `root_url  -> 'http://www.example.com/'`
+    * [**Rails Helper**] The root can be accessed as the route `root_path`. Ex: `<%= link_to "Home", root_path %>`
+    * [**Rails Helper**] It can also be accessed as a route with `root_url`. Ex: `<%= link_to "Home", root_url %>`
+    * [**HTML**] It can also be accessed as an HTML route `'/'`. Ex: `<a href="/">Home</a>`
+
+  * **Normal Routes**
+    * [**Normal Route**]: `get 'static_pages/help'`.
+    * [**Ex**]: `help_path -> '/help'` - `help_url  -> 'http://www.example.com/static_pages/help'`
+    * [**Rails Helper**] This route can be accessed with `help_path`. Ex: `<%= link_to "Help", help_path %>`
+    * [**Rails Helper**] It can also be accessed with `help_url`. Ex: `<%= link_to "Help", help_url %>`
+    * [**HTML**] It can also be accessed using HTML `'/static_pages/help'`. Ex: `<a href="/static_pages/help">Help</a>`
+
+  * **Custom Routes**
+    * Sometimes we want a page to be accessed via a different route than RESTful. You would then need a custom route.
+    * Let's change our "Normal" route to a "Custom" route. This will change the `_path` & `_url`.
+    * [**Normal Route**]: `get 'static_pages/help'` is originally access using:
+      * `<%= link_to "Help", help_path %>`
+      * `<a href="/static_pages/help">Help</a>`
+    * [**Custom Route**]: `get  '/help', to: 'static_pages#help'` is now accessed using:
+      * `<%= link_to "Help", help_path %>`
+      * `<a href="/help">Help</a>`
+      * [**Ex**]: `help_path -> '/help'` - `help_url  -> 'http://www.example.com/help'`
+
+
+##### Rails Helpers:
+  * **Link_To**:
+    * Creating a Link:
+      * [**Rails Example**]: `<%= link_to "About", about_path %>`
+      * [**HTML Example**]: `<a href="/static_pages/about">About</a>`
+      * [**Rails Helper**]: `<%= link_to 'LinkName', http://LinkToPlace.org %>`
+      * [**Rails Helper**]: `<%= link_to 'LinkName', any_routes_path %>`
+      * [**Raw HTML**]: `<a href="http://LinkToPlace.org">LinkName</a>`
+      * [**Raw HTML**]: `<a href="/ViewFolder/View">LinkName</a>`
+
+    * Creating an Image as a Link:
+      * [**Example**]: `<%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/' %>`
+      * [**Rails Helper**]: `<%= link_to image_tag("ImageName.Extension", alt: "AlternateName"), 'http://LinkToPlace.org' %>`
+      * [**Raw HTML**]: `<a href="http://LinkToPlace.org"><img alt="AlternateName" src="/ViewFolder/ImageName.Extension" /></a>`
+      *
 
 
 
