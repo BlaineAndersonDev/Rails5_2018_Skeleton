@@ -115,3 +115,12 @@
 
       describe "GET #home" do
   ~~~~
+  * [3.4.2] You **must** use a `before(:each)` loop instead of the provided `def setup` example. Code for this is provided below:
+  ~~~~
+    RSpec.describe StaticPagesController, type: :controller do
+      render_views
+
+      before(:each) do
+        @base_title = "Ruby on Rails Tutorial Sample App"
+      end
+  ~~~~
