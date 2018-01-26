@@ -1,8 +1,9 @@
 # Rails 5 Skeleton
 #### Built using "[Railstutorial.org](https://www.railstutorial.org/book/static_pages)" as a reference base.
+##### The tutorial uses some variations or procedures I don't personally use. All changes in my code is referenced in the readme per tutorial section.
 
 ###### ------------------------------------------------------------------
-#### Easily forgettable git commands when using Rails:
+#### Easily forgettable commands & amazing resources for using Rails:
 ###### Help Commands:
 * `rake -T`/`rails -T`: A useful command list
 

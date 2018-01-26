@@ -3,15 +3,11 @@ require 'rails_helper'
 RSpec.describe StaticPagesController, type: :controller do
   render_views
 
-  before(:each) do
-    @base_title = "Ruby on Rails Tutorial Sample App"
-  end
-
   describe "GET #home" do
     it "returns http success" do
       get :home
       expect(response).to have_http_status(:success)
-      assert_select "title", "Home | #{@base_title}"
+      assert_select "title", "Ruby on Rails Tutorial Sample App"
     end
   end
 
@@ -19,7 +15,7 @@ RSpec.describe StaticPagesController, type: :controller do
     it "returns http success" do
       get :help
       expect(response).to have_http_status(:success)
-      assert_select "title", "Help | #{@base_title}"
+      assert_select "title", "Ruby on Rails Tutorial Sample App"
     end
   end
 
@@ -27,7 +23,7 @@ RSpec.describe StaticPagesController, type: :controller do
     it "returns http success" do
       get :about
       expect(response).to have_http_status(:success)
-      assert_select "title", "About | #{@base_title}"
+      assert_select "title", "Ruby on Rails Tutorial Sample App"
     end
   end
 
