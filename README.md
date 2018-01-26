@@ -40,7 +40,6 @@
   * [Personal Preference Controller Generation Guide](https://www.sitepoint.com/building-your-first-rails-application-views-and-controllers/)
   * `rails g controller [Name of object in CamelCase] [Routes to include with options]`
   * `rails g controller StaticPages home help`
-  *
 
 ###### Model Generation:
   * [Personal Preference Model Generation Guide 1](https://railsguides.net/advanced-rails-model-generators/)
@@ -49,6 +48,48 @@
   * `rails g controller user username email:string age:integer`
   * Each `field` may be assigned a field type. This defaults to `(field):string`.
   * Available field types are: `integer` `primary_key` `decimal` `float` `boolean` `binary` `string` `text` `date` `time` `datetime` `timestamp`.
+
+###### ------------------------------------------------------------------
+#### Adding Models/Views/Controllers Manually With Tests(No Generators):
+###### Models:
+  *
+
+###### Views:
+  *
+
+###### Controllers:
+  * Using TDD(Test Driven Development) we will create a failing RSpec test to start with.
+  * Open the RSpec spec file `spec/controllers/static_pages_controller_spec.rb` and create a test:
+    ~~~~
+      describe "GET #about" do
+        it "returns http success" do
+          get :about
+          expect(response).to have_http_status(:success)
+        end
+      end
+    ~~~~
+  * [**RSpec**]: Run Rspec in Terminal.
+  * [**Error**]: The error should now be: `No route matches {:action=>"about", :controller=>"static_pages"}`.
+  * [**Solve**]: Add `get  'static_pages/about'` to `config/routes.rb`.
+  * [**RSpec**]: Run Rspec in Terminal.
+  * [**Error**]: The error should now be: `The action 'about' could not be found for StaticPagesController`.
+  * [**Solve**]: Now add the route into the controller: `app/controllers/static_pages_controller.rb`
+    ~~~~
+      def about
+      end
+    ~~~~
+  * [**RSpec**]: Run Rspec in Terminal.
+  * [**Error**] should now be: `StaticPagesController#about is missing a template for this request format and variant.`
+  * [**Solve**]: Now create a view for the controller route: `touch app/views/static_pages/about.html.erb`
+  * [**Complete**]: The test should now be passing and you have a new route in your controller!
+
+
+
+
+###### ------------------------------------------------------------------
+####Additional Resources:
+  * [Markdown CheatSheet](https://en.support.wordpress.com/markdown-quick-reference/)
+  * [Markdown Previewer](https://jbt.github.io/markdown-editor/)
 
 ###### ------------------------------------------------------------------
 #### Creation Steps, Notes & Tutorial Links:
@@ -60,4 +101,3 @@
   * I chose to use "Rspec" instead of the built in test suite. If you missed any steps below PRIOR to generating the controller just use the `rails d` command to destroy the controller and `rails g` recreate it.
   * Make sure you have run the command `rails g rspec:install` if you are using the `gem 'rspec-rails'`.
   * Make sure you have removed the provided gem for controller testing: `gem 'rails-controller-testing'.
-  *
