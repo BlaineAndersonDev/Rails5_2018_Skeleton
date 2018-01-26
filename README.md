@@ -6,6 +6,12 @@
   - `rails db:create`
   - `rails db:migrate`
   - `rails db:seed`
+  - `heroku create`: Creates a Heroku repo for you to use.
+  - `git push heroku master`: uploads the MASTER branch to Heroku to be deployed live.
+  - `https://ancient-retreat-50009.herokuapp.com/`: Once done the link to the live site should be similar to this.
+  - `heroku logs`: Shows the console activity (and errors) on the Heroku web server.
+  - `Blank`: Filler
+  - `Blank`: Filler
   - `Blank`: Filler
 * `Blank`: Filler
 * `Blank`: Filler
