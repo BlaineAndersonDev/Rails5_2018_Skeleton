@@ -95,8 +95,15 @@
 
 ###### ------------------------------------------------------------------
 #### Additional Resources:
+###### Markdown:
   * [Markdown CheatSheet](https://en.support.wordpress.com/markdown-quick-reference/)
   * [Markdown Previewer](https://jbt.github.io/markdown-editor/)
+
+###### CSS:
+  * [Flexbox)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+  * [Coolors.co](https://coolors.co/)
+  * [Keep Footers Down](http://matthewjamestaylor.com/blog/keeping-footers-at-the-bottom-of-the-page)
+  * []()
 
 ###### ------------------------------------------------------------------
 #### Creation Steps, Notes & Tutorial Links:
@@ -161,5 +168,7 @@
       end
     end
   ~~~~
+  * Thats all I changed for this chapter. **Be aware that chapter 4 is review of basic Rails concepts to DBC Graduates**. If your one I recommend skipping it.
 
-###### [Tutorial: 4.2.1 "Comments"](https://www.railstutorial.org/book/rails_flavored_ruby#sec-comments)
+###### [Tutorial: Chapter 5 "Filling in the layout"](https://www.railstutorial.org/book/filling_in_the_layout#cha-filling_in_the_layout)
+  *
