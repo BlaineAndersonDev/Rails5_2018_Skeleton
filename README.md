@@ -11,8 +11,21 @@
   - `git push heroku master`: uploads the MASTER branch to Heroku to be deployed live.
   - `https://ancient-retreat-50009.herokuapp.com/`: Once done the link to the live site should be similar to this.
   - `heroku logs`: Shows the console activity (and errors) on the Heroku web server.
-  - `Blank`: Filler
-  - `Blank`: Filler
+  - `git checkout -b [BRANCH-NAME]`: The `-b` allows the creation of a new branch. `co` can be used in place of `checkout`.
+  - Rails Generate Commands:
+    = `rails g` can be used as a shortcut command.
+    = Controller Generation Commands (+ examples):
+      + `rails generate controller [Name of object in CamelCase] [Routes to include with options]`
+      + `rails generate controller StaticPages home help`
+      +
+    = Model Generation Commands (+ examples):
+      + `rails generate controller [Name of object in CamelCase] [Routes to include with options]`
+      + `rails generate controller StaticPages home help`
+      +
+    = View Generation Commands (+ examples):
+      + `rails generate controller [Name of object in CamelCase] [Routes to include with options]`
+      + `rails generate controller StaticPages home help`
+      +
   - `Blank`: Filler
 * `Blank`: Filler
 * `Blank`: Filler
@@ -31,6 +44,8 @@
 * [Tutorial: 3.1 "Sample App Setup"](https://www.railstutorial.org/book/static_pages#sec-sample_app_setup)
 * "Github" may be used in place of "Bitbucket".
 * "Postgresql" may be used instead of "SQLite3" for test databases.
+
+* [Tutorial: 3.2 "Static Pages"](https://www.railstutorial.org/book/static_pages#sec-static_pages)
 *
 *
 *
