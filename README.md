@@ -3,6 +3,7 @@
 #### Easily forgettable git commands when using Rails:
 * `rake -T`/`rails -T`: A useful command list
   - Some more commonly used commands:
+  * `git remote add origin [LINK TO NEW GITHUB REPO]`: Connect a remote repo to your local repo.
   - `rails db:create`
   - `rails db:migrate`
   - `rails db:seed`
@@ -28,4 +29,8 @@
 
 #### Creation Steps & Tutorial Links:
 * [Tutorial: 3.1 "Sample App Setup"](https://www.railstutorial.org/book/static_pages#sec-sample_app_setup)
-* `git remote add origin [LINK TO NEW GITHUB REPO]`: Connect a remote repo to your local repo.
+* "Github" may be used in place of "Bitbucket".
+* "Postgresql" may be used instead of "SQLite3" for test databases.
+*
+*
+*
