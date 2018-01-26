@@ -7,6 +7,7 @@
 * `rake -T`/`rails -T`: A useful command list
 
 ###### Local Database:
+  * `rails db:drop`
   * `rails db:create`
   * `rails db:migrate`
   * `rails db:seed`
@@ -23,6 +24,10 @@
   * `git push heroku master`: uploads the MASTER branch to Heroku to be deployed live.
   * `https://ancient-retreat-50009.herokuapp.com/`: Once done the link to the live site should be similar to this.
   * `heroku logs`: Shows the console activity (and errors) on the Heroku web server.
+
+###### Rspec Installation & Commands:
+  * Use `gem install rspec-rails` in the CLI or place `gem 'rspec-rails'` into the gemfile manually. The use `bundle install.`.
+  * `rails g rspec:install`: Install RSpec via the Command Line AFTER implementing the gem using `bundle install`.
 
 ###### ------------------------------------------------------------------
 #### Rails Generate Commands:
@@ -46,11 +51,12 @@
 
 ###### ------------------------------------------------------------------
 #### Creation Steps, Notes & Tutorial Links:
-* [Tutorial: 3.1 "Sample App Setup"](https://www.railstutorial.org/book/static_pages#sec-sample_app_setup)
-* "Github" may be used in place of "Bitbucket".
-* "Postgresql" may be used instead of "SQLite3" for test databases.
+###### [Tutorial: 3.1 "Sample App Setup"](https://www.railstutorial.org/book/static_pages#sec-sample_app_setup)
+  * "Github" may be used in place of "Bitbucket".
+  * "Postgresql" may be used instead of "SQLite3" for test databases.
 
-* [Tutorial: 3.2 "Static Pages"](https://www.railstutorial.org/book/static_pages#sec-static_pages)
-*
-*
-*
+###### [Tutorial: 3.3 "Getting Started With Testing"](https://www.railstutorial.org/book/static_pages#sec-getting_started_with_testing)
+  * I chose to use "Rspec" instead of the built in test suite. If you missed any steps below PRIOR to generating the controller just use the `rails d` command to destroy the controller and `rails g` recreate it.
+  * Make sure you have run the command `rails g rspec:install` if you are using the `gem 'rspec-rails'`.
+  * Make sure you have removed the provided gem for controller testing: `gem 'rails-controller-testing'.
+  *
