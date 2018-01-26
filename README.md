@@ -100,4 +100,7 @@
 ###### [Tutorial: 3.3 "Getting Started With Testing"](https://www.railstutorial.org/book/static_pages#sec-getting_started_with_testing)
   * I chose to use "Rspec" instead of the built in test suite. If you missed any steps below PRIOR to generating the controller just use the `rails d` command to destroy the controller and `rails g` recreate it.
   * Make sure you have run the command `rails g rspec:install` if you are using the `gem 'rspec-rails'`.
-  * Make sure you have removed the provided gem for controller testing: `gem 'rails-controller-testing'.
+  * Make sure you have removed the provided gem for controller testing: `gem 'rails-controller-testing'`.
+
+###### [Tutorial: 3.4 "Slightly Dynamic Pages"](https://www.railstutorial.org/book/static_pages#sec-slightly_dynamic_pages)
+  *
