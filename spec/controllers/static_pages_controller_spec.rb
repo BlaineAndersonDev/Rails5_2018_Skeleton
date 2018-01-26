@@ -33,6 +33,6 @@ RSpec.describe StaticPagesController, type: :controller do
       expect(response).to have_http_status(:success)
       assert_select "title", "Ruby on Rails Tutorial Sample App"
     end
-  end  
+  end
 
 end

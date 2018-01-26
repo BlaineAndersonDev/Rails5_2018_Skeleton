@@ -235,5 +235,6 @@
   ~~~~
   * Thats all I changed for this chapter. **Be aware that chapter 4 is review of basic Rails concepts to DBC Graduates**. If your one I recommend skipping it.
 
-###### [Tutorial: Chapter 5 "Filling in the layout"](https://www.railstutorial.org/book/filling_in_the_layout#cha-filling_in_the_layout)
-  *
+###### [Tutorial: 5.3.2 "Rails Routes"](https://www.railstutorial.org/book/filling_in_the_layout#sec-rails_routes)
+  * Tests work a bit differently here. Due to RSpec we dont need to change anything in the static_pages_controller_spec tests.
+  * We do, however, need to alter the static_pages_routing_spec. We need to remove the `/static_pages` from each `expect` line.
