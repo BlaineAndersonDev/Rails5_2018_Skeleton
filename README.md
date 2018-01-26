@@ -90,6 +90,21 @@
   * [**Complete**]: The test should now be passing and you have a new route in your controller!
 
 
+###### ------------------------------------------------------------------
+#### Rails Helpers:
+###### link_to:
+  * Creating a Link:
+    * [**Example**]: `<%= link_to 'New Post', new_post_path %>`
+    * [**Rails Helper**]: `<%= link_to 'LinkName', http://LinkToPlace.org %>`
+    * [**Rails Helper**]: `<%= link_to 'LinkName', any_routes_path %>`
+    * [**Raw HTML**]: `<a href="http://LinkToPlace.org">LinkName</a>`
+    * [**Raw HTML**]: `<a href="/ViewFolder/View">LinkName</a>`
+
+  * Creating an Image as a Link:
+    * [**Example**]: `<%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/' %>`
+    * [**Rails Helper**]: `<%= link_to image_tag("ImageName.Extension", alt: "AlternateName"), 'http://LinkToPlace.org' %>`
+    * [**Raw HTML**]: `<a href="http://LinkToPlace.org"><img alt="AlternateName" src="/ViewFolder/ImageName.Extension" /></a>`
+    *
 
 
 
