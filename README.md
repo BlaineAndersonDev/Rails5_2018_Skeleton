@@ -32,6 +32,7 @@
   * [Rspec Model Test Guide](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
   * [Rspec View Test Guide](http://ruby-journal.com/how-to-write-rails-view-test-with-rspec/)
   * [Rspec Controller Test Guide](https://everydayrails.com/2012/04/07/testing-series-rspec-controllers.html)
+  * [Rspec Route Test Guide](http://geekhmer.github.io/blog/2014/07/30/test-routes-with-rspec-in-ruby-on-rails/)
 
 ###### ------------------------------------------------------------------
 #### Rails Generate Commands:
@@ -82,7 +83,7 @@
       end
     ~~~~
   * [**RSpec**]: Run Rspec in Terminal.
-  * [**Error**] should now be: `StaticPagesController#about is missing a template for this request format and variant.`
+  * [**Error**]:The error should now be: `StaticPagesController#about is missing a template for this request format and variant.`
   * [**Solve**]: Now create a view for the controller route: `touch app/views/static_pages/about.html.erb`
   * [**Side Note**]: While the controller is complete, you should also create a spec file for testing the view later in `spec/views/static_pages/about.html.erb_spec.rb`
   * [**Complete**]: The test should now be passing and you have a new route in your controller!
@@ -92,7 +93,7 @@
 
 
 ###### ------------------------------------------------------------------
-####Additional Resources:
+#### Additional Resources:
   * [Markdown CheatSheet](https://en.support.wordpress.com/markdown-quick-reference/)
   * [Markdown Previewer](https://jbt.github.io/markdown-editor/)
 
@@ -123,4 +124,39 @@
       before(:each) do
         @base_title = "Ruby on Rails Tutorial Sample App"
       end
+  ~~~~
+  * The final "root" test is actually a routing test. So we will create a routing test folder and two sets of routing specs.
+  * [**Create**]: Generate the routing folder `mkdir spec/routing`
+  * [**Create**]: Generate the root route spec `touch spec/routing/root_routing_spec.rb`
+  * [**Create**]: Generate the static_pages route spec `touch spec/routing/static_pages_routing_spec.rb`
+  * [**Edit**]: Make sure to include `require 'rails_helper'` in each spec file.
+  * We currently only have 4 routes to test:
+  ~~~~
+    Prefix Verb URI Pattern                   Controller#Action
+    root GET  /                             static_pages#home
+    static_pages_home GET  /static_pages/home(.:format)  static_pages#home
+    static_pages_help GET  /static_pages/help(.:format)  static_pages#help
+    static_pages_about GET  /static_pages/about(.:format) static_pages#about
+  ~~~~
+  * The example below is for the root route:
+  ~~~~
+    require 'rails_helper'
+
+    RSpec.describe "Root Route", :type => :routing do
+      it "#root" do
+        expect(get("/")).
+        to route_to('static_pages#home')
+      end
+    end
+  ~~~~
+  * The example below is for the static_pages#home route:
+  ~~~~
+    require 'rails_helper'
+
+    RSpec.describe "StaticPagesRoutes", :type => :routing do
+      it "#home" do
+        expect(get("/static_pages/home")).
+        to route_to('static_pages#home')
+      end
+    end
   ~~~~
