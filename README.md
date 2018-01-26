@@ -152,6 +152,10 @@
       * [**Raw HTML**]: `<a href="http://LinkToPlace.org"><img alt="AlternateName" src="/ViewFolder/ImageName.Extension" /></a>`
       *
 
+###### ------------------------------------------------------------------
+#### Building your own Authentication System in Rails:
+###### Basics:
+
 
 
 ###### ------------------------------------------------------------------
@@ -241,4 +245,3 @@
 
 ###### [Tutorial: 5.3.4 "Layout link tests"](https://www.railstutorial.org/book/filling_in_the_layout#sec-layout_link_tests)
   * This is testing our routes, which we have already updated. Move on to the next section.
-  
