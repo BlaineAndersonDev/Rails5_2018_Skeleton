@@ -11,6 +11,7 @@
   * `rails db:seed`
 
 ###### Branch Control:
+  * `git reset --hard HEAD`: Resets the branch to the last commit. Use with caution!
   * `git checkout -b [BRANCH-NAME]`: The `-b` allows the creation of a new branch. `co` can be used in place of `checkout`.
 
 ###### Connecting Local & Remote Repos:
