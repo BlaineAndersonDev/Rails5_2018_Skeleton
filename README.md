@@ -28,7 +28,10 @@
 ###### Rspec Installation & Commands:
   * Use `gem install rspec-rails` in the CLI or place `gem 'rspec-rails'` into the gemfile manually. The use `bundle install.`.
   * `rails g rspec:install`: Install RSpec via the Command Line AFTER implementing the gem using `bundle install`.
-  * `be rspec`: Runs the RSpec tests. `rspec` will also work but may prompt an error.
+  * `be rspec -fd`: Runs the RSpec tests. `rspec` will also work but may prompt an error. `-fd` generates a more in-depth report.
+  * [Rspec Model Test Guide](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
+  * [Rspec View Test Guide](http://ruby-journal.com/how-to-write-rails-view-test-with-rspec/)
+  * [Rspec Controller Test Guide](https://everydayrails.com/2012/04/07/testing-series-rspec-controllers.html)
 
 ###### ------------------------------------------------------------------
 #### Rails Generate Commands:
@@ -50,7 +53,7 @@
   * Available field types are: `integer` `primary_key` `decimal` `float` `boolean` `binary` `string` `text` `date` `time` `datetime` `timestamp`.
 
 ###### ------------------------------------------------------------------
-#### Adding Models/Views/Controllers Manually With Tests(No Generators):
+#### Adding Models/Views/Controllers Manually(Including Tests)(No Generators):
 ###### Models:
   *
 
@@ -81,7 +84,9 @@
   * [**RSpec**]: Run Rspec in Terminal.
   * [**Error**] should now be: `StaticPagesController#about is missing a template for this request format and variant.`
   * [**Solve**]: Now create a view for the controller route: `touch app/views/static_pages/about.html.erb`
+  * [**Side Note**]: While the controller is complete, you should also create a spec file for testing the view later in `spec/views/static_pages/about.html.erb_spec.rb`
   * [**Complete**]: The test should now be passing and you have a new route in your controller!
+
 
 
 
@@ -103,4 +108,10 @@
   * Make sure you have removed the provided gem for controller testing: `gem 'rails-controller-testing'`.
 
 ###### [Tutorial: 3.4 "Slightly Dynamic Pages"](https://www.railstutorial.org/book/static_pages#sec-slightly_dynamic_pages)
-  *
+  * The described tests in this section are considered "View" tests and should be input into the static_pages specs individually. While not recommend, this can be worked around by adding `render_views` just under `RSpec.describe StaticPagesController, type: :controller do` in the static_pages controller RSpec tests. That being said until we get further into the app view tests are not very useful. I chose to use the code below.
+  ~~~~
+    RSpec.describe StaticPagesController, type: :controller do
+      render_views
+
+      describe "GET #home" do
+  ~~~~
