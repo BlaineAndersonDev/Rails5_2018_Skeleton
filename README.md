@@ -238,3 +238,6 @@
 ###### [Tutorial: 5.3.2 "Rails Routes"](https://www.railstutorial.org/book/filling_in_the_layout#sec-rails_routes)
   * Tests work a bit differently here. Due to RSpec we dont need to change anything in the static_pages_controller_spec tests.
   * We do, however, need to alter the static_pages_routing_spec. We need to remove the `/static_pages` from each `expect` line.
+
+###### [Tutorial: 5.3.4 "Layout link tests"](https://www.railstutorial.org/book/filling_in_the_layout#sec-layout_link_tests)
+  * This is testing our routes, which we have already updated. Move on to the next section.
