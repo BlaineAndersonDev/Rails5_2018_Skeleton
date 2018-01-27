@@ -495,3 +495,10 @@
       end
   ~~~~
   * During this section you will create an index migration for email. Your tests will **NOT** be red as stated because we built them seperately in RSpec (as far as I understand it). This will likely be covered later on.
+
+###### [Tutorial: 6.3.2 "User has secure password"](https://www.railstutorial.org/book/modeling_users#sec-has_secure_password)
+  * We'll now need to update our RSpec to include the two virtual attributes "password" & "password_confirmation".
+  * Updated user_spec.rb:
+  ~~~~
+      let(:user) { User.create(:name => "Blaine", :email => "BlaineEmail123@gmail.com", :password => "BlainesAwesome", :password_confirmation => "BlainesAwesome") }
+  ~~~~
