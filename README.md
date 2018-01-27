@@ -378,7 +378,11 @@
   * We also need to setup validity for both "name" & "email" in our User model:
   ~~~~
       class User < ApplicationRecord
-        validates :name, :email, presence: true
+        validates :name,  presence: true
+        validates :email, presence: true
       end
   ~~~~
   * At this point your tests should both pass since neither is "valid".
+
+###### [Tutorial: 6.2.3 "Length Validation"](https://www.railstutorial.org/book/modeling_users#sec-length_validation)
+  * Here we are updating both the User model and the model tests to reflect a character limit on "name" and "email" fields.
