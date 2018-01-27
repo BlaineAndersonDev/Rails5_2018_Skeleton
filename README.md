@@ -169,7 +169,8 @@
     * `validates :[field], presence: [true/false]`: Requires that the field is not `blank`
     * `validates :[field], length: { maximum: 50 }`: Requires that the field be under the provided maximum length of characters.
     * `validates :[field]format: { with: [Regex_Formula] }`: Requires that the field successfully pass the Regex format.
-
+    * `validates :[field]uniqueness: [true/false]`: Requires that the field be one of a kind.
+    * `validates :[field]uniqueness: { case_sensitive: [true/false] }`: Allows you to set case_sensitive uniqueness. It is true by default.
 
     * User Migration Example:
     ~~~~
@@ -465,16 +466,14 @@
       end
   ~~~~
 
-###### [Tutorial: 6.2.4 "Uniqueness validation"](https://www.railstutorial.org/book/modeling_users#sec-uniqueness_validation)
+###### [Tutorial: 6.2.5 "Uniqueness validation"](https://www.railstutorial.org/book/modeling_users#sec-uniqueness_validation)
   * In this section we are adding Uniqueness validations to the User model and User spec:
   * Updated user_spec.rb:
   ~~~~
-      it "is invalid if email contains errors" do
-        invalid_addresses = ["user@example,com", "user_at_foo.org", "user.name@example.foo@bar_baz.com", "foo@bar+baz.com"]
-        invalid_addresses.each do |invalid_address|
-          user.email = invalid_address
-          expect(user).to_not be_valid
-        end
+      it "is invalid if email is duplicate" do
+          duplicate_user = user.dup
+          duplicate_user.save
+          expect(duplicate_user).to_not be_valid
       end
   ~~~~
   * Updated User model:
@@ -482,6 +481,6 @@
       class User < ApplicationRecord
         validates :name,  presence: true, length: { maximum: 50 }
         VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-        validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
+        validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
       end
   ~~~~

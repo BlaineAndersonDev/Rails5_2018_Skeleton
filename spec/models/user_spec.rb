@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "UserModel", type: :model do
-  let(:user) { User.new(:name => "Blaine", :email => "BlaineEmail123@gmail.com") }
+  let(:user) { User.create(:name => "Blaine", :email => "BlaineEmail123@gmail.com") }
 
   it "is valid with all attributes" do
     expect(user).to be_valid
@@ -33,6 +33,12 @@ RSpec.describe "UserModel", type: :model do
       user.email = invalid_address
       expect(user).to_not be_valid
     end
+  end
+
+  it "is invalid if email is duplicate" do
+      duplicate_user = user.dup
+      duplicate_user.save
+      expect(duplicate_user).to_not be_valid
   end
 
 end
