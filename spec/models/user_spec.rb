@@ -22,7 +22,7 @@ RSpec.describe "UserModel", type: :model do
     expect(user).to_not be_valid
   end
 
-  it "is invalid if email > 256 characters" do
+  it "is invalid if email > 255 characters" do
     user.email = "a" * 244 + "@example.com"
     expect(user).to_not be_valid
   end

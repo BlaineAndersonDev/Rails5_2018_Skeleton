@@ -161,6 +161,33 @@
   * `rails g controller user username email:string age:integer`
   * Each `field` may be assigned a field type. This defaults to `(field):string`.
   * Available field types are: `integer` `primary_key` `decimal` `float` `boolean` `binary` `string` `text` `date` `time` `datetime` `timestamp`.
+  * Model Validations:
+    * [RoR Validation Guide](http://guides.rubyonrails.org/active_record_validations.html)
+    * If your "User" model has the fields "name" & "email" you can add required validations to ensure they are formatted properly.
+    * `validates :[field]`: This is the simplest validation. It requires only that the field is not `nil`. (So `blank` is fine.)
+    * `validates :[field], presence: [true/false]`: Requires that the field is not `blank`
+    * `validates :[field], length: { maximum: 50 }`: Requires that the field be under the provided maximum length of characters.
+
+    * User Migration Example:
+    ~~~~
+        class CreateUsers < ActiveRecord::Migration[5.1]
+          def change
+            create_table :users do |t|
+              t.string :name
+              t.string :email
+
+              t.timestamps
+            end
+          end
+        end
+    ~~~~
+    * User Model Example:
+    ~~~~
+        class User < ApplicationRecord
+          validates :name,  presence: true, length: { maximum: 50 }
+          validates :email, presence: true, length: { maximum: 255 }
+        end
+    ~~~~
 
 ###### ------------------------------------------------------------------
 #### Adding Models/Views/Controllers Manually(Including Tests)(No Generators):
@@ -363,6 +390,10 @@
       RSpec.describe User, type: :model do
         let(:user) { User.new(:name => "Blaine", :email => "BlaineEmail123@gmail.com") }
 
+        it "is valid with all attributes" do
+          expect(user).to be_valid
+        end
+
         it "is not valid without a name" do
           user.name = nil
           expect(user).to_not be_valid
@@ -382,7 +413,27 @@
         validates :email, presence: true
       end
   ~~~~
-  * At this point your tests should both pass since neither is "valid".
+  * At this point all your tests should pass.
 
 ###### [Tutorial: 6.2.3 "Length Validation"](https://www.railstutorial.org/book/modeling_users#sec-length_validation)
   * Here we are updating both the User model and the model tests to reflect a character limit on "name" and "email" fields.
+  * user_spec.rb:
+  ~~~~
+      it "is invalid if name > 50 characters" do
+        user.name = "a" * 51
+        expect(user).to_not be_valid
+      end
+
+      it "is invalid if email > 255 characters" do
+        user.email = "a" * 244 + "@example.com"
+        expect(user).to_not be_valid
+      end
+  ~~~~
+  * Updated User model:
+  ~~~~
+      validates :name,  presence: true, length: { maximum: 50 }
+      validates :email, presence: true, length: { maximum: 255 }
+  ~~~~
+  * At this point all your tests should pass.
+
+###### [Tutorial: 6.2.4 "Format validation"](https://www.railstutorial.org/book/modeling_users#sec-format_validation)
