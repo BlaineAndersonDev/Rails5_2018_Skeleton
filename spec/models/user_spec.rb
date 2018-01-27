@@ -27,4 +27,12 @@ RSpec.describe "UserModel", type: :model do
     expect(user).to_not be_valid
   end
 
+  it "is invalid if email contains errors" do
+    invalid_addresses = ["user@example,com", "user_at_foo.org", "user.name@example.foo@bar_baz.com", "foo@bar+baz.com"]
+    invalid_addresses.each do |invalid_address|
+      user.email = invalid_address
+      expect(user).to_not be_valid
+    end
+  end
+
 end

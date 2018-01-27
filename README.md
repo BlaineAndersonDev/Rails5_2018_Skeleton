@@ -163,10 +163,13 @@
   * Available field types are: `integer` `primary_key` `decimal` `float` `boolean` `binary` `string` `text` `date` `time` `datetime` `timestamp`.
   * Model Validations:
     * [RoR Validation Guide](http://guides.rubyonrails.org/active_record_validations.html)
+    * [In-Depth Regex Email Validations](https://stackoverflow.com/questions/201323/using-a-regular-expression-to-validate-an-email-address)
     * If your "User" model has the fields "name" & "email" you can add required validations to ensure they are formatted properly.
     * `validates :[field]`: This is the simplest validation. It requires only that the field is not `nil`. (So `blank` is fine.)
     * `validates :[field], presence: [true/false]`: Requires that the field is not `blank`
     * `validates :[field], length: { maximum: 50 }`: Requires that the field be under the provided maximum length of characters.
+    * `validates :[field]format: { with: [Regex_Formula] }`: Requires that the field successfully pass the Regex format.
+
 
     * User Migration Example:
     ~~~~
@@ -309,6 +312,10 @@
   * [SASS Docs)](http://sass-lang.com/)
   * []()
 
+###### Regex:
+  * [Rublar)](http://www.rubular.com/)
+  * []()
+
 ###### ------------------------------------------------------------------
 #### Creation Steps, Notes & Tutorial Links:
 ###### [Tutorial: 3.1 "Sample App Setup"](https://www.railstutorial.org/book/static_pages#sec-sample_app_setup)
@@ -417,7 +424,7 @@
 
 ###### [Tutorial: 6.2.3 "Length Validation"](https://www.railstutorial.org/book/modeling_users#sec-length_validation)
   * Here we are updating both the User model and the model tests to reflect a character limit on "name" and "email" fields.
-  * user_spec.rb:
+  * Updated user_spec.rb:
   ~~~~
       it "is invalid if name > 50 characters" do
         user.name = "a" * 51
@@ -437,3 +444,44 @@
   * At this point all your tests should pass.
 
 ###### [Tutorial: 6.2.4 "Format validation"](https://www.railstutorial.org/book/modeling_users#sec-format_validation)
+  * [In-Depth Regex Email Validations](https://stackoverflow.com/questions/201323/using-a-regular-expression-to-validate-an-email-address)
+  * In this section we are adding format validations to the User model and User spec:
+  * Updated user_spec.rb:
+  ~~~~
+      it "is invalid if email contains errors" do
+        invalid_addresses = ["user@example,com", "user_at_foo.org", "user.name@example.foo@bar_baz.com", "foo@bar+baz.com"]
+        invalid_addresses.each do |invalid_address|
+          user.email = invalid_address
+          expect(user).to_not be_valid
+        end
+      end
+  ~~~~
+  * Updated User model:
+  ~~~~
+      class User < ApplicationRecord
+        validates :name,  presence: true, length: { maximum: 50 }
+        VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+        validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
+      end
+  ~~~~
+
+###### [Tutorial: 6.2.4 "Uniqueness validation"](https://www.railstutorial.org/book/modeling_users#sec-uniqueness_validation)
+  * In this section we are adding Uniqueness validations to the User model and User spec:
+  * Updated user_spec.rb:
+  ~~~~
+      it "is invalid if email contains errors" do
+        invalid_addresses = ["user@example,com", "user_at_foo.org", "user.name@example.foo@bar_baz.com", "foo@bar+baz.com"]
+        invalid_addresses.each do |invalid_address|
+          user.email = invalid_address
+          expect(user).to_not be_valid
+        end
+      end
+  ~~~~
+  * Updated User model:
+  ~~~~
+      class User < ApplicationRecord
+        validates :name,  presence: true, length: { maximum: 50 }
+        VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+        validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
+      end
+  ~~~~
