@@ -12,6 +12,109 @@
   * `rails db:create`
   * `rails db:migrate`
   * `rails db:seed`
+  * `rails console` :Covered in-depth in it's own section.
+
+###### Rails Console:
+  * There are **many** SQL commands, but I will cover some of the more common ones and provide examples for each:
+    * `Object.new` : Creates a new 'Object' with nil fields.
+    * `Object.new(field: 'filler')` : Creates a new 'Object' filled with provided fields.
+    * `Object.valid?` : Checks if the 'Object' is valid and returns a boolean.
+    * `Object.[field]` : Returns the specified field from that specific 'Object'
+    * `Object.created_at` : Returns the timestamp for when the 'Object' was created.
+    * `Object.updated_at` : Returns the timestamp for when the 'Object' was last updated.
+    * `Object.save` : Saves the 'Object' into the database as long as its 'valid'.
+    * `Object.save!` : Saves the 'Object' into the database as long as its 'valid' else it returns an error. (Only use during debugging).
+    * `Object.create` : Creates and saves the 'Object' into the database as long as its 'valid' and returns the 'Object'.
+    * `Object.create!` : Creates and saves the 'Object' into the database as long as its 'valid' and returns the 'Object' else it returns an error. (Only use during debugging).
+    * `Object.find(integer)` : Searches the database for the index (integer) of that 'Object' and returns it if it exists.
+    * `Object.find_by(field: "field_entry")` : Searches the database for the field & field_entry of that 'Object' and returns the 'Object' if it exists.
+    * `Object.first` : Searches the database returns the first indexed 'Object' if it exists.
+    * `Object.all` : Searches the database returns every 'Object' if any exists.
+
+    * These examples assume there is a "User" model with "Name" & "Email" fields:
+    ~~~~
+        >> User.new
+        => #<User id: nil, name: nil, email: nil, created_at: nil, updated_at: nil>
+
+        >> user = User.new(name: "Michael Hartl", email: "mhartl@example.com")
+        => #<User id: nil, name: "Michael Hartl", email: "mhartl@example.com", created_at: nil, updated_at: nil>
+
+        >> user.valid? #Returns a boolean value of true if valid.
+        => #true
+
+        >> user.save #Saves the user to the database provided the user is valid, and provides a boolean on success or failure.
+         (0.1ms)  SAVEPOINT active_record_1
+         SQL (0.8ms)  INSERT INTO "users" ("name", "email", "created_at",
+         "updated_at") VALUES (?, ?, ?, ?)  [["name", "Michael Hartl"],
+         ["email", "mhartl@example.com"], ["created_at", 2016-05-23 19:05:58 UTC],
+         ["updated_at", 2016-05-23 19:05:58 UTC]]
+         (0.1ms)  RELEASE SAVEPOINT active_record_1
+        => true
+
+        >> user.name #Returns the variable "user"'s name.
+        => "Michael Hartl"
+
+        >> user.email #Returns the variable "user"'s email.
+        => "mhartl@example.com"
+
+        >> user.updated_at #Returns the variable "user"'s updated_at timestamp.
+        => Mon, 23 May 2016 19:05:58 UTC +00:00
+
+        >> User.create(name: "A Nother", email: "another@example.org")
+        #<User id: 2, name: "A Nother", email: "another@example.org", created_at: "2016-05-23 19:18:46", updated_at: "2016-05-23 19:18:46">
+
+        >> foo = User.create(name: "Foo", email: "foo@bar.com")
+        #<User id: 3, name: "Foo", email: "foo@bar.com", created_at: "2016-05-23 19:19:06", updated_at: "2016-05-23 19:19:06">
+
+        >> User.find(1)
+        => #<User id: 1, name: "Michael Hartl", email: "mhartl@example.com", created_at: "2016-05-23 19:05:58", updated_at: "2016-05-23 19:05:58">
+
+        >> User.find(3)
+        ActiveRecord::RecordNotFound: Couldn't find User with ID=3
+
+        >> User.find_by(email: "mhartl@example.com")
+        => #<User id: 1, name: "Michael Hartl", email: "mhartl@example.com",
+        created_at: "2016-05-23 19:05:58", updated_at: "2016-05-23 19:05:58">
+
+        >> User.first
+        => #<User id: 1, name: "Michael Hartl", email: "mhartl@example.com",
+        created_at: "2016-05-23 19:05:58", updated_at: "2016-05-23 19:05:58">
+
+        >> User.all
+        => #<ActiveRecord::Relation [#<User id: 1, name: "Michael Hartl",
+        email: "mhartl@example.com", created_at: "2016-05-23 19:05:58",
+        updated_at: "2016-05-23 19:05:58">, #<User id: 2, name: "A Nother",
+        email: "another@example.org", created_at: "2016-05-23 19:18:46",
+        updated_at: "2016-05-23 19:18:46">]>
+    ~~~~
+
+    * Manipulating/Updating "Objects" in database:
+      * Keep in mind you **must** user `Object.save` when finished or the changes won't be permanently made to the "Object".
+      * `Object.[field] = "new_field_value"` : Updates the specified field from that specific 'Object' to the "new_field_value".
+      * `Object.update_attribute(name: "The Dude")` : Update a single value.
+      * `Object.update_attributes(name: "The Dude", email: "dude@abides.org")` : Update multiple values at once.
+      * `Object.errors.full_messages` : If the "Object" is invalid, this will provide a full error messages regarding why.
+      ~~~~
+          >> user.email = "mhartl@example.net"
+          => "mhartl@example.net"
+          >> user.save
+          => true
+
+          >> user.update_attribute(:name, "El Duderino")
+          => true
+          >> user.name
+          => "El Duderino"
+
+          >> user.update_attributes(name: "The Dude", email: "dude@abides.org")
+          => true
+          >> user.name
+          => "The Dude"
+          >> user.email
+          => "dude@abides.org"
+
+          >> user.errors.full_messages
+          => ["Name can't be blank"]
+      ~~~~
 
 ###### Branch Control:
   * `git reset --hard HEAD`: Resets the branch to the last commit. Use with caution!
@@ -30,7 +133,12 @@
   * Use `gem install rspec-rails` in the CLI or place `gem 'rspec-rails'` into the gemfile manually. The use `bundle install.`.
   * `rails g rspec:install`: Install RSpec via the Command Line AFTER implementing the gem using `bundle install`.
   * `be rspec -fd`: Runs the RSpec tests. `rspec` will also work but may prompt an error. `-fd` generates a more in-depth report.
+  * `be rspec spec/[folder/filename] -fd`: Allows you to specify what folder or file you want to test individually.
+  * [Rspec Spec Generator Guide](https://relishapp.com/rspec/rspec-rails/docs/generators)
+    * `rails generate rspec:model [model name]`
+    * `rails generate rspec:controller [controller name]`
   * [Rspec Model Test Guide](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
+    * [**Ex**]: `let(:object) { User.new(name: => "Jane Doe", :email => "jane@doe.com", :password => "pw1234", :password_confirmation => "pw1234") }`
   * [Rspec View Test Guide](http://ruby-journal.com/how-to-write-rails-view-test-with-rspec/)
   * [Rspec Controller Test Guide](https://everydayrails.com/2012/04/07/testing-series-rspec-controllers.html)
   * [Rspec Route Test Guide](http://geekhmer.github.io/blog/2014/07/30/test-routes-with-rspec-in-ruby-on-rails/)
@@ -245,3 +353,32 @@
 
 ###### [Tutorial: 5.3.4 "Layout link tests"](https://www.railstutorial.org/book/filling_in_the_layout#sec-layout_link_tests)
   * This is testing our routes, which we have already updated. Move on to the next section.
+
+###### [Tutorial: 6.2.1 "A validity test"](https://www.railstutorial.org/book/modeling_users#sec-a_validity_test)
+  * Here we are setting up Rspec tests for our new User model. When you used `rails generate model User name:string email:string` it would have automatically generated the RSpec file as well. Located at `spec/models/user_spec.rb`.
+  * In the RSpec we'll need to add a "user" to test as well as the validity tests themselves:
+  ~~~~
+      require 'rails_helper'
+
+      RSpec.describe User, type: :model do
+        let(:user) { User.new(:name => "Blaine", :email => "BlaineEmail123@gmail.com") }
+
+        it "is not valid without a name" do
+          user.name = nil
+          expect(user).to_not be_valid
+        end
+
+        it "is not valid without an email" do
+          user.email = nil
+          expect(user).to_not be_valid
+        end
+
+      end
+  ~~~~
+  * We also need to setup validity for both "name" & "email" in our User model:
+  ~~~~
+      class User < ApplicationRecord
+        validates :name, :email, presence: true
+      end
+  ~~~~
+  * At this point your tests should both pass since neither is "valid".
