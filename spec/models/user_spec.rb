@@ -41,4 +41,11 @@ RSpec.describe "UserModel", type: :model do
       expect(duplicate_user).to_not be_valid
   end
 
+  it "is invalid if email is duplicate with different case" do
+      duplicate_user = user.dup
+      duplicate_user.email = "bLAINEeMAIL123@GMAIL.COM"
+      duplicate_user.save
+      expect(duplicate_user).to_not be_valid
+  end
+
 end

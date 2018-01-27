@@ -294,7 +294,17 @@
 ###### ------------------------------------------------------------------
 #### Building your own Authentication System in Rails:
 ###### Basics:
-
+  * Rails has a built in method called `has_secure_password` that when placed in a model (generally "User") provides the following:
+    * The ability to save a securely hashed `password_digest` attribute to the database
+    * A pair of virtual attributes (`password` and `password_confirmation`), including presence validations upon object creation and a validation requiring that they match
+    * An authenticate method that returns the user when the `password` is correct (and false otherwise)
+  * The only requirement for `has_secure_password` to work its magic is for the corresponding model (User) to have an attribute called `password_digest`.
+  * You can generate a User model that includes it right off with the following command:
+    * ``
+  * Or you can add it to an already created User model by creating a new migration:
+    * `rails generate migration add_password_digest_to_users password_digest:string`
+    * This migration "`add_password_digest_to_users`" uses Rails methods to "`add_`" the "`password_digest_`" "`to_users`".
+  * User Model
 
 
 ###### ------------------------------------------------------------------
@@ -484,3 +494,4 @@
         validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
       end
   ~~~~
+  * During this section you will create an index migration for email. Your tests will **NOT** be red as stated because we built them seperately in RSpec (as far as I understand it). This will likely be covered later on.
