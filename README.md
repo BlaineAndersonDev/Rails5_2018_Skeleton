@@ -557,3 +557,5 @@
 
 ###### [Tutorial: 7.1.3 "Debugger"](https://www.railstutorial.org/book/sign_up#sec-debugger)
   * While this section works with the gem "byebug", I would rather user the debugger command and RSpec tests exclusively, and as such its use is not represented in my codebase.
+
+###### [Tutorial 7.2.1 "Using *form_for*"](https://www.railstutorial.org/book/sign_up#sec-using_form_for)
