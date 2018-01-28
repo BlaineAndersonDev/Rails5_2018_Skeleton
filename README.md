@@ -241,9 +241,20 @@
   Contact	 /contact	 contact_path
   Sign up	 /signup	 signup_path
   Log in	 /login	     login_path
+
+  Using "resources :users" will provide:
+  get "/users" # -- index on your controller
+  get "/users/:id" # -- show on your controller
+  get "/users/new" # -- new method on your controller
+  post "/users" # -- create on your controller
+  get "/users/:id/edit" # -- edit method on your controller
+  put "/users/:id" # -- update on your controller
+  patch "/users/:id" # -- update on your controller
+  delete "/users/:id" # -- destroy on your controller
 ~~~~
 
 ##### Routing:
+* [RESTful Routing](https://richonrails.com/articles/understanding-rails-routing)
 * All routes are defined in `config/routes.rb`.
 * `_path` is the normal route to use when using Rails Helpers.
 * `_url` is generally only used for redirects with no exchange of information.
@@ -544,4 +555,5 @@
       end
   ~~~~
 
-  
+###### [Tutorial: 7.1.3 "Debugger"](https://www.railstutorial.org/book/sign_up#sec-debugger)
+  * While this section works with the gem "byebug", I would rather user the debugger command and RSpec tests exclusively, and as such its use is not represented in my codebase.
