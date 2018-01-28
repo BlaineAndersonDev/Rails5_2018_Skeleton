@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "UserModel", type: :model do
-  let(:user) { User.create(:name => "Blaine", :email => "BlaineEmail123@gmail.com", :password => "BlainesAwesome", :password_confirmation => "BlainesAwesome") }
+  let(:user) { User.new(:name => "Blaine", :email => "BlaineEmail123@gmail.com", :password => "BlainesAwesome", :password_confirmation => "BlainesAwesome") }
 
   it "is valid with all attributes" do
     expect(user).to be_valid
@@ -36,16 +36,26 @@ RSpec.describe "UserModel", type: :model do
   end
 
   it "is invalid if email is duplicate" do
+      user.save
       duplicate_user = user.dup
       duplicate_user.save
       expect(duplicate_user).to_not be_valid
   end
 
   it "is invalid if email is duplicate with different case" do
+      user.save
       duplicate_user = user.dup
       duplicate_user.email = "bLAINEeMAIL123@GMAIL.COM"
       duplicate_user.save
       expect(duplicate_user).to_not be_valid
+  end
+
+  it "is valid if password == password_confirmation" do
+    user.password == user.password_confirmation
+    expect(user).to be_valid
+  end
+
+  it "is invalid if email < 6 characters" do
   end
 
 end

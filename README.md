@@ -502,3 +502,11 @@
   ~~~~
       let(:user) { User.create(:name => "Blaine", :email => "BlaineEmail123@gmail.com", :password => "BlainesAwesome", :password_confirmation => "BlainesAwesome") }
   ~~~~
+
+###### [Tutorial: 6.3.3 Minimum password standards](https://www.railstutorial.org/book/modeling_users#sec-minimum_password_standards)
+  * Now we will update our User model with a minimum password requirement and create tests for it in RSpec.
+  * Updated user_spec.rb:
+  ~~~~
+      let(:user) { User.create(:name => "Blaine", :email => "BlaineEmail123@gmail.com", :password => "BlainesAwesome", :password_confirmation => "BlainesAwesome") }
+  ~~~~
+  * Updated User model:
