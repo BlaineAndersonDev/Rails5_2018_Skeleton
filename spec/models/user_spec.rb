@@ -50,12 +50,16 @@ RSpec.describe "UserModel", type: :model do
       expect(duplicate_user).to_not be_valid
   end
 
-  it "is valid if password == password_confirmation" do
-    user.password == user.password_confirmation
-    expect(user).to be_valid
+  it "is invalid if password <= 5 characters" do
+    expect(user.password.length).to be > 5
   end
 
-  it "is invalid if email < 6 characters" do
+  it "is invalid if password_confirmation <= 5 characters" do
+    expect(user.password_confirmation.length).to be > 5
+  end
+
+  it "is invalid if password & password_confirmation do not match" do
+    expect(user.password).to eq (user.password_confirmation)
   end
 
 end

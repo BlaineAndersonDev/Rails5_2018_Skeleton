@@ -130,6 +130,7 @@
   * `heroku logs`: Shows the console activity (and errors) on the Heroku web server.
 
 ###### Rspec Installation & Commands:
+  * [RSpec Matcher Guide](https://relishapp.com/rspec/rspec-expectations/v/3-7/docs/built-in-matchers)
   * Use `gem install rspec-rails` in the CLI or place `gem 'rspec-rails'` into the gemfile manually. The use `bundle install.`.
   * `rails g rspec:install`: Install RSpec via the Command Line AFTER implementing the gem using `bundle install`.
   * `be rspec -fd`: Runs the RSpec tests. `rspec` will also work but may prompt an error. `-fd` generates a more in-depth report.
@@ -508,5 +509,37 @@
   * Updated user_spec.rb:
   ~~~~
       let(:user) { User.create(:name => "Blaine", :email => "BlaineEmail123@gmail.com", :password => "BlainesAwesome", :password_confirmation => "BlainesAwesome") }
+
+      . . .
+
+      it "is invalid if password <= 5 characters" do
+        expect(user.password.length).to be > 5
+      end
+
+      it "is invalid if password_confirmation <= 5 characters" do
+        expect(user.password_confirmation.length).to be > 5
+      end
+
+      it "is invalid if password & password_confirmation do not match" do
+        expect(user.password).to eq (user.password_confirmation)
+      end
   ~~~~
   * Updated User model:
+  ~~~~
+      class User < ApplicationRecord
+
+        before_save { self.email = email.downcase }
+
+        validates :name,  presence: true,
+                          length: { maximum: 50 }
+        VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+        validates :email, presence: true,
+                          length: { maximum: 255 },
+                          format: { with: VALID_EMAIL_REGEX },
+                          uniqueness: { case_sensitive: false }
+
+        has_secure_password
+        validates :password, presence: true,
+                             length: { minimum: 6 }
+      end
+  ~~~~
