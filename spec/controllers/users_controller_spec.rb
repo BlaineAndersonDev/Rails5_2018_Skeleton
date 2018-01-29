@@ -51,4 +51,16 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe "GET 'edit'" do
+    before { get :edit, params: {id: only_user.id} }
+
+    it "assigns @post" do
+      expect(assigns(:user)).to eq(only_user)
+    end
+
+    it "renders the edit template" do
+      expect(response).to render_template("edit")
+    end
+  end
+
 end
