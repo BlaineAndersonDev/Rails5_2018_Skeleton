@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let!(:only_user) { User.create(:name => "Blaine", :email => "BlaineEmail123@gmail.com", :password => "BlainesAwesome", :password_confirmation => "BlainesAwesome") }
 
-  describe "GET user#new" do
+  describe "GET user#index" do
     before { get :index }
 
     it "assigns @users" do
@@ -30,12 +30,24 @@ RSpec.describe UsersController, type: :controller do
   describe "GET 'new'" do
     before { get :new }
 
-    it "assigns @post" do
-      expect(assigns(:post)).to be_a_new(Post)
+    it "assigns @user" do
+      expect(assigns(:user)).to be_a_new(User)
     end
 
     it "renders the new template" do
       expect(response).to render_template("new")
+    end
+  end
+
+  describe "POST 'create'" do
+    before { get :create, params: {:user => {:name => "OtherBlaine", :email => "OtherBlaineEmail123@gmail.com", :password => "OtherBlainesAwesome", :password_confirmation => "OtherBlainesAwesome"} } }
+
+    it "will redirect to root path" do
+      expect(response).to redirect_to(root_path)
+    end
+
+    it "will create a new User" do
+      expect{get :create, params: {:user => {:name => "OtherOtherBlaine", :email => "OtherOtherBlaineEmail123@gmail.com", :password => "OtherOtherBlainesAwesome", :password_confirmation => "OtherOtherBlainesAwesome"} }}.to change{User.count}.by(1)
     end
   end
 
