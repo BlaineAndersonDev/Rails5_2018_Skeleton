@@ -556,6 +556,12 @@
   ~~~~
 
 ###### [Tutorial: 7.1.3 "Debugger"](https://www.railstutorial.org/book/sign_up#sec-debugger)
-  * While this section works with the gem "byebug", I would rather user the debugger command and RSpec tests exclusively, and as such its use is not represented in my codebase.
+  * While this section works with the gem "byebug", I would rather use the debugger command and RSpec tests exclusively, and as such byebugs use is not represented in my codebase.
 
-###### [Tutorial 7.2.1 "Using *form_for*"](https://www.railstutorial.org/book/sign_up#sec-using_form_for)
+###### [Tutorial: 7.3.4 A test for invalid submission](https://www.railstutorial.org/book/sign_up#sec-a_test_for_invalid_submission)
+  * At this point we will need to add a new gem to our gemfile to properly test the User controller.
+  * Add `gem 'rails-controller-testing'` to your gemfile directly or user `gem install rails-controller-testing` in your CLI.
+  * Updated user_controller_spec.rb:
+  ~~~~
+  
+  ~~~~
