@@ -63,4 +63,22 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe "PUT 'update'" do
+    context "upon success" do
+      before { put :update, params: {id: only_user.id, user: {:name => "Blaine", :email => "BlaineEmail123@gmail.com", :password => "BlainesAwesome", :password_confirmation => "BlainesAwesome"} } }
+      it "will redirect to root path" do
+        expect(response).to redirect_to root_path
+      end
+    end
+    context "upon failure" do
+      before { put :update, params: {id: only_user.id, user: {:name => "Blaine", :email => "BlaineEmail123@gmail.com", :password => "BlainesAwesome", :password_confirmation => "BadPassword"} } }
+
+      it "will render :edit template" do
+        get :edit, params: { id: only_user.id }
+        expect(response).to render_template("edit")
+      end
+
+    end
+  end
+
 end
