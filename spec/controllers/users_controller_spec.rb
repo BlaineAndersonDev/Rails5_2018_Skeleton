@@ -27,7 +27,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "GET 'new'" do
+  describe "GET user#new" do
     before { get :new }
 
     it "assigns @user" do
@@ -39,7 +39,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "POST 'create'" do
+  describe "POST user#create" do
     before { get :create, params: {:user => {:name => "OtherBlaine", :email => "OtherBlaineEmail123@gmail.com", :password => "OtherBlainesAwesome", :password_confirmation => "OtherBlainesAwesome"} } }
 
     it "will redirect to root path" do
@@ -51,7 +51,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "GET 'edit'" do
+  describe "GET user#edit" do
     before { get :edit, params: {id: only_user.id} }
 
     it "assigns @post" do
@@ -63,7 +63,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "PUT 'update'" do
+  describe "PUT user#update" do
     context "upon success" do
       before { put :update, params: {id: only_user.id, user: {:name => "Blaine", :email => "BlaineEmail123@gmail.com", :password => "BlainesAwesome", :password_confirmation => "BlainesAwesome"} } }
       it "will redirect to root path" do
@@ -80,7 +80,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "DELETE 'destroy'" do
+  describe "DELETE user#destroy" do
     before { get :destroy, params: {id: only_user.id} }
 
     it " will redirect to root path" do
