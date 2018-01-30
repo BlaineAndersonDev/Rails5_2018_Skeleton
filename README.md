@@ -12,6 +12,7 @@
   * `rails db:create`
   * `rails db:migrate`
   * `rails db:seed`
+  * `rails db:migrate:reset`
   * `rails console` :Covered in-depth in it's own section.
 
 ###### Rails Console:
