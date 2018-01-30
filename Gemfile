@@ -15,6 +15,7 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 gem 'bcrypt',       '3.1.7'
 gem 'bootstrap-sass', '3.3.7'
+gem 'rails-controller-testing'
 gem 'simplecov'
 
 group :development, :test do
