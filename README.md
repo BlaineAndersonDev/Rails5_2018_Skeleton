@@ -5,7 +5,7 @@
 ###### ------------------------------------------------------------------
 #### Easily forgettable commands & amazing resources for using Rails:
 ###### Help Commands:
-* `rake -T`/`rails -T`: A useful command list
+  * `rake -T`/`rails -T`: A useful command list
 
 ###### Local Database:
   * `rails db:drop`
@@ -290,6 +290,7 @@
 
 ##### Rails Helpers:
   * **Link_To**:
+    * [RoR link_to Guide](http://guides.rubyonrails.org/getting_started.html)
     * Creating a Link:
       * [**Rails Example**]: `<%= link_to "About", about_path %>`
       * [**HTML Example**]: `<a href="/static_pages/about">About</a>`
@@ -303,6 +304,103 @@
       * [**Rails Helper**]: `<%= link_to image_tag("ImageName.Extension", alt: "AlternateName"), 'http://LinkToPlace.org' %>`
       * [**Raw HTML**]: `<a href="http://LinkToPlace.org"><img alt="AlternateName" src="/ViewFolder/ImageName.Extension" /></a>`
       *
+
+  * **Form_For**:
+    * Creating a Form:
+    * [Tutorial: Chapter 7.2 Signup form](https://www.railstutorial.org/book/sign_up#sec-signup_form)
+    * [RoR form_for Guide](http://guides.rubyonrails.org/form_helpers.html)
+    ~~~~
+        <h1>Sign up</h1>
+
+        <div class="row">
+            <%= form_for(@user) do |f| %>
+              <%= f.label :name %>
+              <%= f.text_field :name %>
+
+              <%= f.label :email %>
+              <%= f.email_field :email %>
+
+              <%= f.label :password %>
+              <%= f.password_field :password %>
+
+              <%= f.label :password_confirmation, "Confirmation" %>
+              <%= f.password_field :password_confirmation %>
+
+              <%= f.submit "Create my account", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    ~~~~
+      * `<%= form_for(@user) do |f| %>` The "@user" implies to Rails that we want to create namespaced data using "user[field]"
+      * [**Ex**]: `<%= f.text_field :name %>` - NameSpaced: user[name]
+      * [**Ex**]: `<%= f.email_field :name %>` - NameSpaced: user[email]
+      * [**Ex**]: `<%= f.password_field :password %>` - NameSpaced: user[password]
+      * [**Ex**]: `<%= f.password_field :password_confirmation %>` - NameSpaced: user[password_confirmation]
+      * All these Namespaced fields together create a params hash: {name: user[name], email: user[email], password: user[password], password_confirmation: user[password_confirmation]}
+      * The Rails Helper version VS. the HTML version:
+      ~~~~
+          #Rails:
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          #html
+            <label for="user_name">Name</label>
+            <input id="user_name" name="user[name]" type="text" />
+      ~~~~
+
+##### Creating Sessions:
+  * Sessions is the browser based "User ID" that allow a User to persistently be logged in on any given page of a website or program.
+  * This requires you to already have a User database setup. The following steps provide a blueprint to expand on:
+    * **Routes: `config/routes.rb`**:
+      ~~~~
+          get    '/login',   to: 'sessions#new'`
+          post   '/login',   to: 'sessions#create'
+          delete '/logout',  to: 'sessions#destroy'`
+      ~~~~
+    * **Sessions View: `app/views/sessions/new.html.erb`**
+      ~~~~
+          <h1>Log in</h1>
+
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <%= form_for(:session, url: login_path) do |f| %>
+
+                <%= f.label :email %>
+                <%= f.email_field :email, class: 'form-control' %>
+
+                <%= f.label :password %>
+                <%= f.password_field :password, class: 'form-control' %>
+
+                <%= f.submit "Log in", class: "btn btn-primary" %>
+              <% end %>
+
+              <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+            </div>
+          </div>
+      ~~~~
+    * **Sessions Controller: `app/controllers/sessions_controller.rb`**
+      ~~~~
+          def new
+          end
+
+          def create
+            user = User.find_by(email: params[:session][:email].downcase)
+            if user && user.authenticate(params[:session][:password])
+              # Log the user in and redirect to the user's show page.
+            else
+              # Create an error message.
+              flash.now[:danger] = 'Invalid email/password combination'
+              render 'new'
+            end
+          end
+
+          def destroy
+          end
+      ~~~~
+    * **FILLER**
+      ~~~~
+      ~~~~
+    * **FILLER**
+      ~~~~
+      ~~~~
 
 ###### ------------------------------------------------------------------
 #### Building your own Authentication System in Rails:
